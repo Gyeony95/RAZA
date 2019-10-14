@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_item_home"
+        android:icon="@drawable/ic_clock"
+        android:title="지난 대화상대" />
+    <item
+        android:id="@+id/nav_item_search"
+        android:icon="@drawable/ic_phone"
+        android:title="화상채팅" />
+    <item
+        android:id="@+id/nav_item_likes"
+        android:icon="@drawable/ic_profile_active"
+        android:title="친구목록" />
+    <item
+        android:id="@+id/nav_item_profile"
+        android:icon="@drawable/ic_chat_black_24dp"
+        android:title="메세지" />
+</menu>
