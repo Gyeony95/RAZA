@@ -22,7 +22,6 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import com.google.gson.Gson
-import com.noble.activity.RAZA_3.FindFriends.FindFriendsView.FindFriendsViewActivity
 import com.noble.activity.RAZA_3.Mypage.MypageActivity
 import com.noble.activity.RAZA_3.etc_process.CameraPreview
 import com.noble.activity.RAZA_3.etc_process.URL_to_Bitmap_Task

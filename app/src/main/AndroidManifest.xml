@@ -28,9 +28,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FindFriends.FindFriendsView.FindFriendsViewActivity">
-
-        </activity>
         <activity android:name=".FriendsList.FriendsProfile.FriendsProfileActivity" />
         <activity android:name=".ChatList.ChatRoom.ChatRoomActivity" />
 
@@ -41,16 +38,18 @@
         <activity android:name=".Mypage.MypageActivity" />
         <activity android:name=".ChatList.ChatListActivity" />
         <activity android:name=".LastestFriends.LastestFriendsActivity" />
-        <activity android:name=".FindFriends.FindFriendsActivity" />
+        <activity android:name=".FindFriends.FindFriendsActivity" >
+
+        </activity>
+        <activity android:name=".FindFriends.FindFriendsView.Activity.FindFriendsViewActivity" >
+
+        </activity>
+        <activity android:name=".FindFriends.FindFriendsView.Activity.RTCActivity"></activity>
         <activity android:name=".FriendsList.FriendsListActivity" />
         <activity
             android:name=".Login.LoginActivity"
             android:windowSoftInputMode="stateVisible|adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Register.RegisterActivity"

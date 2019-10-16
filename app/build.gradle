@@ -106,7 +106,8 @@ dependencies {
     implementation 'com.github.nkzawa:socket.io-client:0.3.0'
 
     //webRTC
-    implementation 'org.webrtc:google-webrtc:1.0.22672'
+    //implementation 'org.webrtc:google-webrtc:1.0.22672'
+    api 'io.pristine:libjingle:9127@aar'
 
 
 }
