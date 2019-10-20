@@ -41,8 +41,12 @@
         <activity android:name=".FindFriends.FindFriendsActivity" >
 
         </activity>
-        <activity android:name=".FindFriends.FindFriendsView.Activity.FindFriendsViewActivity" >
+        <activity android:name=".FindFriends.FindFriendsView.Activity.CallActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".FindFriends.FindFriendsView.Activity.RTCActivity"></activity>
         <activity android:name=".FriendsList.FriendsListActivity" />

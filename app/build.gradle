@@ -37,6 +37,9 @@ android {
 }
 
 dependencies {
+    androidTestImplementation('com.android.support:support-annotations:26.1.0') {
+        force = true
+    }
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'
@@ -103,11 +106,12 @@ dependencies {
     implementation('io.socket:socket.io-client:1.0.0') {
         exclude group: 'org.json', module: 'json'
     }
-    implementation 'com.github.nkzawa:socket.io-client:0.3.0'
+    implementation 'com.github.nkzawa:socket.io-client:0.4.2'
 
     //webRTC
     //implementation 'org.webrtc:google-webrtc:1.0.22672'
-    api 'io.pristine:libjingle:9127@aar'
+    //api 'io.pristine:libjingle:9127@aar'
+    api project(':webrtc-client')
 
 
 }
