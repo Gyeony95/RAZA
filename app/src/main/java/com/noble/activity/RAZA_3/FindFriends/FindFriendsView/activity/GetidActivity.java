@@ -17,6 +17,7 @@
 package com.noble.activity.RAZA_3.FindFriends.FindFriendsView.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -32,17 +33,29 @@ import java.util.Random;
 
 
 /**
- * Created by duongnx on 3/14/2017.
+ * 여긴 잠깐 스쳐지나가는 액티비티
  */
 
 public class GetidActivity extends AppCompatActivity {
 
-
+    SharedPreferences preferences;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_getid);
+        preferences  = getSharedPreferences("USERSIGN", MODE_PRIVATE);
+        String email_id = preferences.getString("user", "");
+
+
         final EditText etUserName = (EditText) findViewById(R.id.etUserName);
+
+        Intent intent = new Intent(GetidActivity.this, ListUserActivity.class);
+
+        MyApplication.getInstance().setLoginUser(email_id);
+        startActivity(intent);
+        finish();
+
+        /*
         Random random = new Random();
         etUserName.setText("duongnx" + random.nextInt(1000));
         findViewById(R.id.btLogin).setOnClickListener(new View.OnClickListener() {
@@ -66,5 +79,7 @@ public class GetidActivity extends AppCompatActivity {
                 }
             }
         });
+
+        */
     }
 }
