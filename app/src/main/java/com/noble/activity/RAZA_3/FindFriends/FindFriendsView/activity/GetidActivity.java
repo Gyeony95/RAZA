@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -49,7 +50,18 @@ public class GetidActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!TextUtils.isEmpty(etUserName.getText().toString())) {
                     Intent intent = new Intent(GetidActivity.this, ListUserActivity.class);
-                    MyApplication.getInstance().setLoginUser(etUserName.getText().toString());
+                    if(MyApplication.getInstance() == null){
+                        Log.e("asd", "널임 ㅜㅜ");
+                    }else{
+                        Log.e("asd", "널아님 ");
+
+                    }
+                    MyApplication
+                            .getInstance()
+                            .setLoginUser
+                                    (etUserName
+                                            .getText()
+                                            .toString());
                     startActivity(intent);
                 }
             }

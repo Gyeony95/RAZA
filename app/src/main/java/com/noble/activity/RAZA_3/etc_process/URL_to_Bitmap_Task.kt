@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.AsyncTask
-import com.google.android.gms.flags.impl.SharedPreferencesFactory.getSharedPreferences
+//import com.google.android.gms.flags.impl.SharedPreferencesFactory.getSharedPreferences
 import java.net.URL
 
 class URL_to_Bitmap_Task() : AsyncTask<Void, Void, Bitmap>() {

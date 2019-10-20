@@ -70,8 +70,8 @@ public class RtcActivity extends AppCompatActivity implements WebRtcClient.RtcLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
         setContentView(R.layout.main);
         //mSocketAddress = "https://" + getResources().getString(R.string.host);
         mSocketAddress = "http://ec2-15-164-104-42.ap-northeast-2.compute.amazonaws.com:3000" ;

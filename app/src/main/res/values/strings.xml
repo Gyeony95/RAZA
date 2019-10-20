@@ -13,4 +13,7 @@
 
     <string name="django_url">wdaw</string>
     <string name="node_url">asdsad</string>
+    <string name="host">ec2-15-164-104-42.ap-northeast-2.compute.amazonaws.com:3000</string>
+    <string name="action_settings">Options</string>
+
 </resources>
