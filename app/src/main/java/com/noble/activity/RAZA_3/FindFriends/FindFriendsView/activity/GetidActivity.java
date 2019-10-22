@@ -52,6 +52,10 @@ public class GetidActivity extends AppCompatActivity {
         Intent intent = new Intent(GetidActivity.this, ListUserActivity.class);
 
         MyApplication.getInstance().setLoginUser(email_id);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("connect", false);
+        editor.commit();
+
         startActivity(intent);
         finish();
 
@@ -71,7 +75,7 @@ public class GetidActivity extends AppCompatActivity {
                     }
                     MyApplication
                             .getInstance()
-                            .setLoginUser
+                            .setstart
                                     (etUserName
                                             .getText()
                                             .toString());

@@ -41,6 +41,13 @@
             android:layout_weight="1"
             android:text="12002"
             android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tvconnect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
     </LinearLayout>
 
 

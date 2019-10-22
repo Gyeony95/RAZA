@@ -45,6 +45,7 @@ public class WebService extends AsyncTask<String, String, String> {
             httpURLConnection.connect();
             int responseCode = httpURLConnection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
+
                 BufferedReader br = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
                 StringBuilder sb = new StringBuilder();
                 String line;
@@ -54,8 +55,11 @@ public class WebService extends AsyncTask<String, String, String> {
                 br.close();
                 Log.d("duongnx", "" + sb.toString());
                 Gson gson = new Gson();
+                //유저 리스트를 받아옴
                 users = gson.fromJson(sb.toString(), new TypeToken<ArrayList<User>>() {
                 }.getType());
+
+
             }
 
 

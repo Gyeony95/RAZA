@@ -18,6 +18,7 @@ package com.noble.activity.RAZA_3.FindFriends.FindFriendsView.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,19 +78,22 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.VhUser> implem
     }
 
     public class VhUser extends RecyclerView.ViewHolder {
-        private TextView tvUserName, tvId;
+        private TextView tvUserName, tvId, tvconnect;
         private Button btCall;
 
         public VhUser(View itemView) {
             super(itemView);
             tvUserName = (TextView) itemView.findViewById(R.id.tvUserName);
             tvId = (TextView) itemView.findViewById(R.id.tvId);
+            tvconnect = (TextView) itemView.findViewById(R.id.tvconnect);
             btCall = (Button) itemView.findViewById(R.id.btCall);
         }
 
         public void setData(User user, int position) {
             tvUserName.setText(user.getName());
             tvId.setText(user.getId());
+            Log.e("adapteruser", user.getConnect().toString());
+            tvconnect.setText(user.getConnect().toString());
             btCall.setTag(position);
         }
 

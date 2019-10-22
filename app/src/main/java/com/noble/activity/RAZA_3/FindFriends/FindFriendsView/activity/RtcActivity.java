@@ -16,6 +16,7 @@
 
 package com.noble.activity.RAZA_3.FindFriends.FindFriendsView.activity;
 
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
@@ -66,6 +67,7 @@ public class RtcActivity extends AppCompatActivity implements WebRtcClient.RtcLi
     private WebRtcClient client;
     private String mSocketAddress;
     private String callerId;
+    SharedPreferences preferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,7 +76,8 @@ public class RtcActivity extends AppCompatActivity implements WebRtcClient.RtcLi
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
         setContentView(R.layout.main);
         //mSocketAddress = "https://" + getResources().getString(R.string.host);
-        mSocketAddress = "http://ec2-15-164-104-42.ap-northeast-2.compute.amazonaws.com:3000" ;
+        //mSocketAddress = "http://ec2-15-164-104-42.ap-northeast-2.compute.amazonaws.com:3000" ;
+        mSocketAddress = "https://03fe8a84.ngrok.io" ;
         //mSocketAddress += (":" + getResources().getString(R.string.port) + "/");
 
         vsv = (GLSurfaceView) findViewById(R.id.glview_call);
@@ -91,6 +94,7 @@ public class RtcActivity extends AppCompatActivity implements WebRtcClient.RtcLi
         remoteRender = VideoRendererGui.create(
                 REMOTE_X, REMOTE_Y,
                 REMOTE_WIDTH, REMOTE_HEIGHT, scalingType, false);
+
         localRender = VideoRendererGui.create(
                 LOCAL_X_CONNECTING, LOCAL_Y_CONNECTING,
                 LOCAL_WIDTH_CONNECTING, LOCAL_HEIGHT_CONNECTING, scalingType, true);
@@ -107,6 +111,7 @@ public class RtcActivity extends AppCompatActivity implements WebRtcClient.RtcLi
         PeerConnectionParameters params = new PeerConnectionParameters(
                 true, false, displaySize.x, displaySize.y, 30, 1, VIDEO_CODEC_VP9, true, 1, AUDIO_CODEC_OPUS, true);
 
+        //이걸 스레드로 매번 호출
         client = new WebRtcClient(this, mSocketAddress, params, VideoRendererGui.getEglBaseContext());
     }
 
@@ -117,6 +122,7 @@ public class RtcActivity extends AppCompatActivity implements WebRtcClient.RtcLi
         if (client != null) {
             client.onPause();
         }
+
     }
 
     @Override
@@ -162,7 +168,9 @@ public class RtcActivity extends AppCompatActivity implements WebRtcClient.RtcLi
 
     public void startCam() {
         // Camera settings
-        client.start(MyApplication.getInstance().getLoginUser());
+        preferences  = getSharedPreferences("USERSIGN", MODE_PRIVATE);
+        client.start(MyApplication.getInstance().getLoginUser(), preferences.getBoolean("connect", false));
+
     }
 
     @Override
@@ -206,6 +214,11 @@ public class RtcActivity extends AppCompatActivity implements WebRtcClient.RtcLi
                 LOCAL_X_CONNECTING, LOCAL_Y_CONNECTING,
                 LOCAL_WIDTH_CONNECTING, LOCAL_HEIGHT_CONNECTING,
                 scalingType, false);
+    }
+
+    @Override
+    public void onChangeConnecttrue() {
+        MyApplication.getInstance().setConnectUser(true);
     }
 
     @Override

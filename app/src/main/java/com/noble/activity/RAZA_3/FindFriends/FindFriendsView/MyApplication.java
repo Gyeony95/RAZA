@@ -9,6 +9,7 @@ import android.app.Application;
 public class MyApplication extends Application {
     static MyApplication instance;
     private String loginUser;
+    private Boolean connectUser;
 
     public static MyApplication getInstance() {
         return instance;
@@ -27,5 +28,13 @@ public class MyApplication extends Application {
 
     public void setLoginUser(String loginUser) {
         this.loginUser = loginUser;
+    }
+
+    public Boolean getConnectUser() {
+        return connectUser;
+    }
+
+    public void setConnectUser(Boolean loginUser) {
+        this.connectUser = connectUser;
     }
 }

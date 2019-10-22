@@ -14,10 +14,15 @@ import com.github.nkzawa.emitter.Emitter;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.opengl.EGLContext;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.webrtc.*;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class WebRtcClient {
     private final static String TAG = "duongnx";
@@ -32,6 +37,7 @@ public class WebRtcClient {
     private VideoSource videoSource;
     private RtcListener mListener;
     private Socket client;
+    SharedPreferences preferences;
 
     /**
      * Implement this interface to be notified of events.
@@ -46,6 +52,8 @@ public class WebRtcClient {
         void onAddRemoteStream(MediaStream remoteStream, int endPoint);
 
         void onRemoveRemoteStream(int endPoint);
+
+        void onChangeConnecttrue();
     }
 
     private interface Command {
@@ -159,6 +167,8 @@ public class WebRtcClient {
             }
         };
 
+
+
         private Emitter.Listener onId = new Emitter.Listener() {
             @Override
             public void call(Object... args) {
@@ -167,6 +177,44 @@ public class WebRtcClient {
                 mListener.onCallReady(id);
             }
         };
+
+
+        private Emitter.Listener test = new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+
+
+/*
+                JSONObject data = (JSONObject) args[0];
+                Log.d("duongnx", "onMessage:call " + data);
+                try {
+                    String from = data.getString("from");
+                    String type = data.getString("type");
+                    JSONObject payload = null;
+                    if (!type.equals("init")) {
+                        payload = data.getJSONObject("payload");
+                    }
+                    // if peer is unknown, try to add him
+                    if (!peers.containsKey(from)) {
+                        // if MAX_PEER is reach, ignore the call
+                        int endPoint = findEndPoint();
+                        if (endPoint != MAX_PEER) {
+                            Peer peer = addPeer(from, endPoint);
+                            peer.pc.addStream(localMS);
+                            commandMap.get(type).execute(from, payload);
+                        }
+                    } else {
+                        commandMap.get(type).execute(from, payload);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                */
+            }
+        };
+
+
     }
 
     private class Peer implements SdpObserver, PeerConnection.Observer {
@@ -313,6 +361,7 @@ public class WebRtcClient {
         }
         client.on("id", messageHandler.onId);
         client.on("message", messageHandler.onMessage);
+        client.on("test", messageHandler.test);
         client.connect();
 
         iceServers.add(new PeerConnection.IceServer("stun:23.21.150.121"));
@@ -364,21 +413,21 @@ public class WebRtcClient {
      *
      * @param name client name
      */
-    public void start(String name) {
-
+    public void start(String name, Boolean connect) {
         setCamera();
         try {
             JSONObject message = new JSONObject();
             message.put("name", name);
+            message.put("connect", connect);
             client.emit("readyToStream", message);
-            Log.d(TAG, "WebRtcClient start:" + message.toString());
+            Log.e(TAG, "WebRtcClient start:" + message.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
     public void setCamera() {
-        Log.d(TAG, "WebRtcClient setCamera:");
+        Log.e(TAG, "WebRtcClient setCamera:");
         localMS = factory.createLocalMediaStream("ARDAMS");
         if (pcParams.videoCallEnabled) {
             MediaConstraints videoConstraints = new MediaConstraints();
