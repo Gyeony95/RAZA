@@ -18,7 +18,6 @@ class Presenter_ChatList() : Contract_ChatList.Presenter {
 
     override fun loadItems(context: Context, arrayList: ArrayList<ChatList_Load>, user_id: Int) {
         view?.showProgress()
-        Log.e("뭐야", "뭐야")
         //데이터 불러오는 부분
         val service = ApiFactory.placeholderApi
         //GlobalScope는 코루틴 계층을 만들수있는 도구

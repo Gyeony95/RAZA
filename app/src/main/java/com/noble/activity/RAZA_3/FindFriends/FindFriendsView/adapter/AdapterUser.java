@@ -42,7 +42,7 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.VhUser> implem
     }
 
     private Context mContext;
-    private OnCallListener onCallListener;
+    private static OnCallListener onCallListener;
     private ArrayList<User> users = new ArrayList<>();
 
     public AdapterUser(Context context, OnCallListener listener) {
@@ -95,6 +95,11 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.VhUser> implem
             Log.e("adapteruser", user.getConnect().toString());
             tvconnect.setText(user.getConnect().toString());
             btCall.setTag(position);
+
+            if(!user.getConnect()){
+                if (onCallListener != null)
+                    onCallListener.onCall(position);
+            }
         }
 
         public Button getBtCall() {
@@ -106,5 +111,13 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.VhUser> implem
     public void onClick(View v) {
         if (onCallListener != null)
             onCallListener.onCall((Integer) v.getTag());
+        Log.e("onclick", ""+(Integer) v.getTag());
+
+
+    }
+
+    public  static void clickCall(int position){
+        if (onCallListener != null)
+            onCallListener.onCall(position);
     }
 }

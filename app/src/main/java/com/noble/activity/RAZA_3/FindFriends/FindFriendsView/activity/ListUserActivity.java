@@ -1,6 +1,8 @@
 package com.noble.activity.RAZA_3.FindFriends.FindFriendsView.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -27,8 +29,11 @@ import java.util.ArrayList;
 public class ListUserActivity extends AppCompatActivity implements WebService.OnServerListener, AdapterUser.OnCallListener {
     private View rootView;
     private RecyclerView recyclerView;
-    private AdapterUser mAdapter;
+    private static AdapterUser mAdapter;
     private TextView tvMessage;
+    private ArrayList<User> users = new ArrayList<>();
+    static Context List_User_context;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +41,7 @@ public class ListUserActivity extends AppCompatActivity implements WebService.On
         setContentView(R.layout.activity_list);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
-
+        List_User_context = this;
         //뷰와 리사이클러뷰 초기화 시켜줌
         tvMessage = (TextView) findViewById(R.id.tvMessage);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -58,6 +63,8 @@ public class ListUserActivity extends AppCompatActivity implements WebService.On
         TextView tvUserName = (TextView) findViewById(R.id.tvUserName);
         tvUserName.setText(MyApplication.getInstance().getLoginUser());
 
+
+
         //시작버튼을 누르면?! ->  여기를 리스트의 위에가 통신중이라면 시작하는걸로 바꾸면 되나봄
         findViewById(R.id.btStart).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +73,18 @@ public class ListUserActivity extends AppCompatActivity implements WebService.On
                 startActivity(intent);
             }
         });
+
+
     }
+
+    public static void startCall(Context context){
+        Intent intent
+                = new Intent
+                (context
+                        , RtcActivity.class);
+        context.startActivity(intent);
+    }
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -92,7 +110,10 @@ public class ListUserActivity extends AppCompatActivity implements WebService.On
             mAdapter.setUsers(users);
             mAdapter.notifyDataSetChanged();
             tvMessage.setVisibility(View.GONE);
-        } else tvMessage.setVisibility(View.VISIBLE);
+        } else{
+            tvMessage.setVisibility(View.VISIBLE);
+            startCall(List_User_context);
+        }
     }
 
     @Override
