@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.noble.activity.RAZA_3.FindFriends.FindFriendsView.activity.ListUserActivity;
 import com.noble.activity.RAZA_3.FindFriends.FindFriendsView.data.User;
 import com.noble.activity.RAZA_3.R;
 
@@ -96,9 +97,17 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.VhUser> implem
             tvconnect.setText(user.getConnect().toString());
             btCall.setTag(position);
 
+
             if(!user.getConnect()){
-                if (onCallListener != null)
+                if (onCallListener != null){
                     onCallListener.onCall(position);
+                    return;
+                }
+            }
+            Log.e("position",""+position);
+            Log.e("users.size()",""+users.size());
+            if(position == users.size()-1){
+                ListUserActivity.startCall(mContext);
             }
         }
 
