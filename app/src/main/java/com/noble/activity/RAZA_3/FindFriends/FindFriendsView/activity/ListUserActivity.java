@@ -58,7 +58,7 @@ public class ListUserActivity extends AppCompatActivity implements WebService.On
         recyclerView.setAdapter(mAdapter);
         //소켓 주소 설정
         //new WebService(this).execute("https://" + getResources().getString(R.string.host) + "/streams.json");
-        new WebService(this).execute("http://ec2-15-164-104-42.ap-northeast-2.compute.amazonaws.com:3000/" + "/streams.json");
+        new WebService(this).execute("http://ec2-15-164-104-42.ap-northeast-2.compute.amazonaws.com:3000" + "/streams.json");
 
         TextView tvUserName = (TextView) findViewById(R.id.tvUserName);
         tvUserName.setText(MyApplication.getInstance().getLoginUser());
