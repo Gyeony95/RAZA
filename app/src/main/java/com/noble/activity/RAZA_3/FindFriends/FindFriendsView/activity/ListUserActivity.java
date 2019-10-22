@@ -58,30 +58,27 @@ public class ListUserActivity extends AppCompatActivity implements WebService.On
         recyclerView.setAdapter(mAdapter);
         //소켓 주소 설정
         //new WebService(this).execute("https://" + getResources().getString(R.string.host) + "/streams.json");
-        new WebService(this).execute("https://03fe8a84.ngrok.io" + "/streams.json");
+        new WebService(this).execute("http://ec2-15-164-104-42.ap-northeast-2.compute.amazonaws.com:3000/" + "/streams.json");
 
         TextView tvUserName = (TextView) findViewById(R.id.tvUserName);
         tvUserName.setText(MyApplication.getInstance().getLoginUser());
 
 
 
-        //시작버튼을 누르면?! ->  여기를 리스트의 위에가 통신중이라면 시작하는걸로 바꾸면 되나봄
-        findViewById(R.id.btStart).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListUserActivity.this, RtcActivity.class);
-                startActivity(intent);
-            }
-        });
+//        //시작버튼을 누르면?! ->  여기를 리스트의 위에가 통신중이라면 시작하는걸로 바꾸면 되나봄
+//        findViewById(R.id.btStart).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(ListUserActivity.this, RtcActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
     }
 
     public static void startCall(Context context){
-        Intent intent
-                = new Intent
-                (context
-                        , RtcActivity.class);
+        Intent intent = new Intent(context, RtcActivity.class);
         context.startActivity(intent);
     }
 
@@ -99,6 +96,7 @@ public class ListUserActivity extends AppCompatActivity implements WebService.On
             Intent intent = new Intent(this, RtcActivity.class);
             intent.putExtra(RtcActivity.KEY_CALLER_ID, user.getId());
             startActivity(intent);
+            finish();
             // ((ListUserActivity) getActivity()).replaceFragment(new FrgVideoChat());
         }
     }
@@ -113,6 +111,7 @@ public class ListUserActivity extends AppCompatActivity implements WebService.On
         } else{
             tvMessage.setVisibility(View.VISIBLE);
             startCall(List_User_context);
+            finish();
         }
     }
 

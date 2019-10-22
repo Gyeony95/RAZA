@@ -76,8 +76,8 @@ public class RtcActivity extends AppCompatActivity implements WebRtcClient.RtcLi
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
         setContentView(R.layout.main);
         //mSocketAddress = "https://" + getResources().getString(R.string.host);
-        //mSocketAddress = "http://ec2-15-164-104-42.ap-northeast-2.compute.amazonaws.com:3000" ;
-        mSocketAddress = "https://03fe8a84.ngrok.io" ;
+        mSocketAddress = "http://ec2-15-164-104-42.ap-northeast-2.compute.amazonaws.com:3000" ;
+        //mSocketAddress = "https://03fe8a84.ngrok.io" ;
         //mSocketAddress += (":" + getResources().getString(R.string.port) + "/");
 
         vsv = (GLSurfaceView) findViewById(R.id.glview_call);

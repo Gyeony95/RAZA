@@ -38,7 +38,7 @@ public class WebRtcClient {
     private RtcListener mListener;
     private Socket client;
     SharedPreferences preferences;
-
+    String myname;
     /**
      * Implement this interface to be notified of events.
      */
@@ -139,7 +139,25 @@ public class WebRtcClient {
         private Emitter.Listener onMessage = new Emitter.Listener() {
             @Override
             public void call(Object... args) {
+                Log.e(TAG, "update전");
 
+                try {
+                    JSONObject message = new JSONObject();
+                    message.put("name", myname);
+                    message.put("connect", false);
+                    client.emit("update", message);
+                    Log.e(TAG, "update :" + message.toString());
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.e(TAG, "update실패");
+
+                }
+                Log.e(TAG, "update후");
+
+
+
+                Log.e("test", "onMessage");
                 JSONObject data = (JSONObject) args[0];
                 Log.d("duongnx", "onMessage:call " + data);
                 try {
@@ -172,6 +190,8 @@ public class WebRtcClient {
         private Emitter.Listener onId = new Emitter.Listener() {
             @Override
             public void call(Object... args) {
+                Log.e("test", "onId");
+
                 String id = (String) args[0];
                 Log.d("duongnx", "onId:call " + id);
                 mListener.onCallReady(id);
@@ -361,7 +381,7 @@ public class WebRtcClient {
         }
         client.on("id", messageHandler.onId);
         client.on("message", messageHandler.onMessage);
-        client.on("test", messageHandler.test);
+        //client.on("test", messageHandler.test);
         client.connect();
 
         iceServers.add(new PeerConnection.IceServer("stun:23.21.150.121"));
@@ -415,6 +435,7 @@ public class WebRtcClient {
      */
     public void start(String name, Boolean connect) {
         setCamera();
+        myname = name;
         try {
             JSONObject message = new JSONObject();
             message.put("name", name);
