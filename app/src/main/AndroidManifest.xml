@@ -25,6 +25,7 @@
     <application
         android:name=".FindFriends.FindFriendsView.MyApplication"
         android:allowBackup="true"
+        android:largeHeap="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="RAZA_3"

@@ -15,7 +15,6 @@ import com.noble.activity.RAZA_3.R
 import com.noble.activity.RAZA_3.Network.ApiService
 import com.noble.activity.RAZA_3.Login.LoginActivity
 import kotlinx.android.synthetic.main.activity_register.*
-import okhttp3.ResponseBody
 import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call

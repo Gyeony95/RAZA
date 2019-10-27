@@ -18,6 +18,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.opengl.EGLContext;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import org.webrtc.*;
@@ -44,6 +45,9 @@ public class WebRtcClient {
      */
     public interface RtcListener {
         void onCallReady(String callId);
+
+        void onExchangeReady(String callId);
+
 
         void onStatusChanged(String newStatus);
 
@@ -125,6 +129,13 @@ public class WebRtcClient {
         Log.d(TAG, "WebRtcClient sendMessage:" + message.toString());
     }
 
+//    public void exchange_id(String my_id){
+//        Log.e("WebRtcClient", "에밋!");
+//        client.emit("exchange", my_id);
+//        Log.e("WebRtcClient", "에밋!222");
+//
+//    }
+
     private class MessageHandler {
         private HashMap<String, Command> commandMap;
 
@@ -204,33 +215,6 @@ public class WebRtcClient {
             public void call(Object... args) {
 
 
-/*
-                JSONObject data = (JSONObject) args[0];
-                Log.d("duongnx", "onMessage:call " + data);
-                try {
-                    String from = data.getString("from");
-                    String type = data.getString("type");
-                    JSONObject payload = null;
-                    if (!type.equals("init")) {
-                        payload = data.getJSONObject("payload");
-                    }
-                    // if peer is unknown, try to add him
-                    if (!peers.containsKey(from)) {
-                        // if MAX_PEER is reach, ignore the call
-                        int endPoint = findEndPoint();
-                        if (endPoint != MAX_PEER) {
-                            Peer peer = addPeer(from, endPoint);
-                            peer.pc.addStream(localMS);
-                            commandMap.get(type).execute(from, payload);
-                        }
-                    } else {
-                        commandMap.get(type).execute(from, payload);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                */
             }
         };
 
@@ -256,6 +240,8 @@ public class WebRtcClient {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            mListener.onExchangeReady(id);
+            Log.e("webrtccloent", id);
         }
 
         @Override
@@ -289,6 +275,7 @@ public class WebRtcClient {
             if (iceConnectionState == PeerConnection.IceConnectionState.DISCONNECTED) {
                 removePeer(id);
                 mListener.onStatusChanged("DISCONNECTED");
+
             }
         }
 
@@ -358,6 +345,9 @@ public class WebRtcClient {
     private void removePeer(String id) {
         Log.d(TAG, "removePeer :" + id);
         Peer peer = peers.get(id);
+
+        Log.e("webrtcclient", peers.toString() );
+
         mListener.onRemoveRemoteStream(peer.endPoint);
         peer.pc.close();
         peers.remove(peer.id);
@@ -381,6 +371,7 @@ public class WebRtcClient {
         }
         client.on("id", messageHandler.onId);
         client.on("message", messageHandler.onMessage);
+        //client.on("exchange", messageHandler.test);
         //client.on("test", messageHandler.test);
         client.connect();
 
@@ -397,6 +388,7 @@ public class WebRtcClient {
      */
     public void onPause() {
         if (videoSource != null) videoSource.stop();
+
     }
 
     /**
@@ -409,15 +401,29 @@ public class WebRtcClient {
     /**
      * Call this method in Activity.onDestroy()
      */
-    public void onDestroy() {
+    public void onDestroy(String id) {
+        Log.e("webclient", "1");
         for (Peer peer : peers.values()) {
             //peer.pc.dispose();
         }
+
+        removePeer(id);
+        Log.e("webclient", "2");
+
         if (videoSource != null)
             videoSource.stop();
+        Log.e("webclient", "3");
+
         factory.dispose();
+
+        Log.e("webclient", "4");
+
         client.disconnect();
+        Log.e("webclient", "5");
+
         client.close();
+        Log.e("webclient", "6");
+
     }
 
     private int findEndPoint() {
@@ -449,7 +455,26 @@ public class WebRtcClient {
 
     public void setCamera() {
         Log.e(TAG, "WebRtcClient setCamera:");
+        if(localMS == null){
+            Log.e("asd", "널");
+        }else{
+            Log.e("asd", "널ㄴㄴ");
+        }
+        if(factory == null){
+            Log.e("asd", "널22");
+        }else{
+            Log.e("asd", "널ㄴㄴ22");
+        }
+        localMS = null;
+        Log.e("asd", factory.toString());
+        Log.e("asd", factory.getClass().getName());
+        Log.e("asd", factory.getClass().getCanonicalName());
+        Log.e("asd", factory.getClass().getSimpleName());
+        Log.e("asd", factory.getClass().toString());
+
         localMS = factory.createLocalMediaStream("ARDAMS");
+        Log.e(TAG, "WebRtcClient setCamera:222");
+
         if (pcParams.videoCallEnabled) {
             MediaConstraints videoConstraints = new MediaConstraints();
             videoConstraints.mandatory.add(new MediaConstraints.KeyValuePair("maxHeight", Integer.toString(pcParams.videoHeight)));
@@ -460,10 +485,12 @@ public class WebRtcClient {
             videoSource = factory.createVideoSource(getVideoCapturer(), videoConstraints);
             localMS.addTrack(factory.createVideoTrack("ARDAMSv0", videoSource));
         }
+        Log.e(TAG, "WebRtcClient setCamera:333");
 
         AudioSource audioSource = factory.createAudioSource(new MediaConstraints());
         if (audioSource != null)
             localMS.addTrack(factory.createAudioTrack("ARDAMSa0", audioSource));
+        Log.e(TAG, "WebRtcClient setCamera:444");
 
         mListener.onLocalStream(localMS);
     }

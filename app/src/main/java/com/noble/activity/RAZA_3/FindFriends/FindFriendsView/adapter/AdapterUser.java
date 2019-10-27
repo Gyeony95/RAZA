@@ -17,6 +17,7 @@
 package com.noble.activity.RAZA_3.FindFriends.FindFriendsView.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,6 +42,7 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.VhUser> implem
     public interface OnCallListener {
         void onCall(int position);
     }
+    SharedPreferences preferences;
 
     private Context mContext;
     private static OnCallListener onCallListener;
@@ -70,7 +72,10 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.VhUser> implem
 
     @Override
     public void onBindViewHolder(VhUser holder, int position) {
+
+
         holder.setData(users.get(position), position);
+
     }
 
     @Override
@@ -91,6 +96,8 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.VhUser> implem
         }
 
         public void setData(User user, int position) {
+
+
             tvUserName.setText(user.getName());
             tvId.setText(user.getId());
             Log.e("adapteruser", user.getConnect().toString());

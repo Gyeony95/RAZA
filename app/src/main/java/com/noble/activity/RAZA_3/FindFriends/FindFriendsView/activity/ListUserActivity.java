@@ -104,6 +104,10 @@ public class ListUserActivity extends AppCompatActivity implements WebService.On
     @Override
     public void onServerComplete(ArrayList<User> users) {
         // Log.d("duongnx","onServerComplete:"+users.size());
+
+
+
+
         if (users != null && users.size() > 0) {
             mAdapter.setUsers(users);
             mAdapter.notifyDataSetChanged();
@@ -113,6 +117,11 @@ public class ListUserActivity extends AppCompatActivity implements WebService.On
             startCall(List_User_context);
             finish();
         }
+
+
+
+
+
     }
 
     @Override

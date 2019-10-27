@@ -37,7 +37,7 @@ class Presenter_Login:Contract_Login.Presenter {
                 .setPermissionListener(permissionListener)
                 .setRationaleMessage("사진 및 파일을 저장하기 위하여 접근 권한이 필요합니다.")
                 .setDeniedMessage("[설정] > [권한] 에서 권한을 허용할 수 있습니다.")
-                .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+                .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
                 .check()
     }
 
