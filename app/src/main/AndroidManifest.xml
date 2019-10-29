@@ -23,7 +23,7 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
     <application
-        android:name=".FindFriends.FindFriendsView.MyApplication"
+        android:name=".FindFriends.EasyRTCApplication"
         android:allowBackup="true"
         android:largeHeap="true"
         android:hardwareAccelerated="false"
@@ -45,27 +45,9 @@
         <activity android:name=".FindFriends.FindFriendsActivity" >
 
         </activity>
-        <activity
-            android:name=".FindFriends.FindFriendsView.activity.RtcActivity"
-            android:configChanges="orientation|screenSize"
-            android:label="@string/app_name"
-            android:screenOrientation="fullUser">
 
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="@string/host"
-                    android:scheme="https" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".FindFriends.FindFriendsView.activity.GetidActivity">
-
-        </activity>
-        <activity android:name=".FindFriends.FindFriendsView.activity.ListUserActivity"></activity>
+       <activity android:name=".FindFriends.Activity.CallActivity"/>
+        <activity android:name=".FindFriends.Activity.RTCActivity"/>
         <activity android:name=".FriendsList.FriendsListActivity" />
         <activity
             android:name=".Login.LoginActivity"

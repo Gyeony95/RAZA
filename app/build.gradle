@@ -118,7 +118,8 @@ dependencies {
     //webRTC
     //implementation 'org.webrtc:google-webrtc:1.0.22672'
     //api 'io.pristine:libjingle:9127@aar'
-    api project(':webrtc-client')
+    api 'io.pristine:libjingle:9127@aar'
+
 
 
 }
