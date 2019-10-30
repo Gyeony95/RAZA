@@ -12,10 +12,13 @@ public class Agent {
 
     private String mType;
 
-    public Agent(String id, String name, String type) {
+    private  Boolean mConnect;
+
+    public Agent(String id, String name, String type, Boolean connect) {
         mID = id;
         mName = name;
         mType = type;
+        mConnect = connect;
     }
 
     public String id() {
@@ -28,6 +31,10 @@ public class Agent {
 
     public String type() {
         return mType;
+    }
+
+    public Boolean connect() {
+        return mConnect;
     }
 
 }

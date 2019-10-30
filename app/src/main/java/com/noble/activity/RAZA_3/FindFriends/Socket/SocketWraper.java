@@ -149,6 +149,8 @@ public class SocketWraper {
             JSONObject msg = new JSONObject();
             msg.put("name", Build.MODEL);
             msg.put("type", "Android_client");
+            msg.put("connect", false);
+            Log.e(TAG, ".emit get_id");
             mSignaling.emit("get_id", msg);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -304,8 +306,9 @@ public class SocketWraper {
                         String id = object.getString("id");
                         String name = object.getString("name");
                         String remoteType = object.getString("type");
+                        Boolean remoteConnect = false;
 
-                        list.add(new Agent(id, name, remoteType));
+                        list.add(new Agent(id, name, remoteType, remoteConnect));
                     }
                     synchronized (SocketWraper.shareContext()) {
                         for (SocketDelegate delegate : SocketWraper.shareContext().mListeners) {

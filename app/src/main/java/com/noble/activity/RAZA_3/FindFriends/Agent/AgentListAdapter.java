@@ -70,16 +70,52 @@ public class AgentListAdapter extends BaseAdapter {
         if (view == null)
             view = mLayoutInflater.inflate(R.layout.agent_list_cell, null);
 
+        Log.e(TAG, "name : "+ mAgents.get(i).name());
+        Log.e(TAG, "id : "+ mAgents.get(i).id());
+        Log.e(TAG, "connect : "+ mAgents.get(i).connect());
+        Log.e(TAG, "type : "+ mAgents.get(i).type());
+
         TextView textView = (TextView)view.findViewById(R.id.agent_list_cell_tv);
-        String showText = new String("name:" + mAgents.get(i).name() + " type:" + mAgents.get(i).type());
+        String showText = new String("name:" + mAgents.get(i).name() + "connect:" + mAgents.get(i).connect()+" type:" + mAgents.get(i).type());
+
+
         textView.setText(showText);
+
+        //나일때
         if (mAgents.get(i).id().equals(SocketWraper.shareContext().getUid())) {
             textView.setTextColor(Color.YELLOW);
-        } else {
+        } else {//내가 아닐때
             textView.setTextColor(Color.RED);
+
+            //여기부터
+            Agent agent = getChooseAgent();
+            if (agent != null) {
+                SocketWraper.shareContext().setTarget(agent.id());
+                SocketWraper.shareContext().invite();
+            }
         }
         textView.setTag(new Integer(i));
         textView.setBackgroundColor(Color.WHITE);
+
+
+        /*
+        for(int k =0; k < mAgents.size()-1; k++){
+
+
+
+            if (mAgents.get(i).id().equals(SocketWraper.shareContext().getUid())){
+
+            }else{
+                Log.e("sliver", "이거 실행되야하는데?!");
+                Agent agent = getChooseAgent();
+                if (agent != null) {
+                    SocketWraper.shareContext().setTarget(agent.id());
+                    SocketWraper.shareContext().invite();
+                }
+
+            }
+        }
+*/
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override

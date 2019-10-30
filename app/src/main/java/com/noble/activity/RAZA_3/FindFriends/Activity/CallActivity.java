@@ -39,15 +39,15 @@ public class CallActivity extends AppCompatActivity implements SocketWraper.Sock
 
         Log.e("skruazzz", "CallActivity onCreate");
 
-        Log.e(TAG, "1");
         setUI();
-        Log.e(TAG, "2");
         setAgents();
-        Log.e(TAG, "3");
         setSocket();
-        Log.e(TAG, "4");
         updateRemoteAgent();
-        Log.e(TAG, "5");
+
+
+
+
+
     }
 
     @Override
@@ -74,15 +74,15 @@ public class CallActivity extends AppCompatActivity implements SocketWraper.Sock
 
     private void setAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(CallActivity.this);
-        builder.setTitle("收到呼叫");
-        builder.setPositiveButton("接听", new DialogInterface.OnClickListener() {
+        builder.setTitle("전화왔음");
+        builder.setPositiveButton("ㅇㅇ", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Log.e("sliver", "CallActivity accept invite");
                 jumpToNextActivity("recv");
             }
         });
-        builder.setNegativeButton("挂断", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("ㄴㄴ", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Log.e("sliver", "CallActivity refuse invite");
