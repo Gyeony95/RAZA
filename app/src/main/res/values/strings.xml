@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">ZARA_3</string>
+    <string name="create_account">Don\'t have an account? <b>Sign up.</b></string>
+    <string name="please_enter_password">Please enter your password</string>
+    <string name="basic_alert_dialog_msg">문제가 발생했습니다.\n다시 시도해주세요.</string>
+    <string name="basic_alert_dialog_neutralbtn_name">확인</string>
+    <string name="basic_loading">잠시만 기다려주세요</string>
+    <string name="basic_error_no_network">네트워크 신호가 약합니다. 다시 시도해주세요.</string>
+    <string name="basic_request_permission">권한을 수락해주세요.</string>
+    <string name="kakao_app_key">5c38dfee8e8db07161d4c64dc80d7953</string>
+    <string name="permission_1">[설정] > [권한] 에서 권한을 허용할 수 있습니다.</string>
+    <string name="permission_2">사진 및 파일을 저장하기 위하여 접근 권한이 필요합니다.</string>
+
+    <string name="django_url">wdaw</string>
+    <string name="node_url">asdsad</string>
+    <string name="host">ec2-15-164-104-42.ap-northeast-2.compute.amazonaws.com:3000</string>
+    <string name="action_settings">Options</string>
+
+</resources>
