@@ -225,6 +225,7 @@ class ChatRoomActivity : BaseActivity2(),Contract_ChatRoom.View{
 
     override fun refresh() {
         mAdapter.notifyDataSetChanged()
+        chat_recyclerview.scrollToPosition(mAdapter.getItemCount() - 1);
     }
 
     //여기 아래로 다 저쪽코드
@@ -384,6 +385,7 @@ class ChatRoomActivity : BaseActivity2(),Contract_ChatRoom.View{
         }
 
         Log.e("챗룸", "sendMessage: 1" + mSocket.emit("chat message", jsonObject))
+        refresh()
     }
 
     public override fun onDestroy() {

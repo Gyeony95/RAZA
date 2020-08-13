@@ -62,6 +62,7 @@ class LoginActivity() : Contract_Login.View , BaseActivity2(){
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+        /*
         btn_kakao_login.setOnClickListener {
             var session :Session = Session.getCurrentSession()
 
@@ -69,6 +70,8 @@ class LoginActivity() : Contract_Login.View , BaseActivity2(){
 
             session.open(AuthType.KAKAO_LOGIN_ALL, this@LoginActivity)
         }
+
+         */
 
     }
 

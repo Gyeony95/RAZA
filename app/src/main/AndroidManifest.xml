@@ -32,7 +32,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".FriendsList.FriendsProfile.FriendsProfileActivity" />
-        <activity android:name=".ChatList.ChatRoom.ChatRoomActivity" />
+        <activity android:name=".ChatList.ChatRoom.ChatRoomActivity"
+            android:windowSoftInputMode="adjustResize"/>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"

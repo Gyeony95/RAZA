@@ -64,7 +64,7 @@
         android:layout_gravity="center_horizontal"
         />
 
-    <Button
+    <!--Button
 
         android:id="@+id/btn_kakao_login"
 
@@ -73,5 +73,5 @@
         android:background="#456782"
         android:layout_height="wrap_content"
 
-        android:text="카카오 로그인" />
+        android:text="카카오 로그인" /-->
 </LinearLayout>

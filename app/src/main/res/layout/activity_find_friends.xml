@@ -82,7 +82,7 @@
                         android:id="@+id/button_test"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="(임시)채팅시작" />
+                        android:text="채팅시작" />
 
                     <TextView
                         android:id="@+id/preview_Profile_Name"
@@ -99,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:gravity="center_vertical"
-                        android:text="국적"
+                        android:text=""
                         android:textColor="#ffffff" />
 
                     <LinearLayout
@@ -107,14 +107,7 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-                        <ImageView
-                            android:id="@+id/preview_Profile_Like_Image"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="0"
-                            android:gravity="center_vertical"
-                            app:srcCompat="@drawable/ic_likes_active" />
+
 
                         <TextView
                             android:id="@+id/preview_Profile_Like_Count"
@@ -123,20 +116,12 @@
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
-                            android:text="6"
+                            android:text=""
                             android:textColor="#ffffff" />
 
                     </LinearLayout>
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/preview_Camera_Turn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    app:srcCompat="@android:drawable/ic_menu_revert" />
 
             </LinearLayout>
         </LinearLayout>

@@ -23,7 +23,7 @@ class Presenter_Register() :Contract_Register.Presenter {
 
     override fun add_account( account: Json_Account) {
 
-        val image_File = File("/storage/emulated/0/DCIM/Camera/crocoimage.png")
+        val image_File = File("/storage/emulated/0/DCIM/Camera/20200807_214259.jpg")
 
         Log.e("aaa", image_File.toString())
         Log.e("aaa", image_File.name)
