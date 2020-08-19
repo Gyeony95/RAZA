@@ -1,6 +1,6 @@
 # RAZA
 
-> 낮선 사람과의 소통
+낮선 사람과의 소통
 
 ## 사용기술
 - Platform : Android, AWS
@@ -9,7 +9,8 @@
 - Database : MySQL
 
 - Back End 
-  - HTTP Server : 
+  - HTTP Server : Django
+  - Socket Server , Signalling Server : Node.js
 
 
 ## 기능
